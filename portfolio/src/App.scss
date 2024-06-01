@@ -1,0 +1,221 @@
+$secPurple: #cd5ff8;
+
+@mixin mobile{
+  @media (max-width: 768px){
+    @content;
+  }
+}
+
+.App{
+  scroll-behavior: smooth;
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+
+  &>*:not(.footer){
+    min-height:100vh;
+    scroll-snap-align: start;
+  }
+  .footer{
+    scroll-snap-align: end;
+    background-color: #d165fbb2;
+    display:grid;
+    justify-content: center;
+    place-items: center;
+    
+    &>*{
+      padding-bottom: 0.5em;
+    }
+    .links{
+      display: flex;
+      gap:1.1em;
+      img{
+        background-color: #fff;
+        height: 1.5em;
+        border-radius: 0.3em;
+        box-shadow: 0 0 10px 0 black;
+      }
+    }
+  }
+  
+  .intro{
+    background-image: url('./images/purpleFG.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40%, 400px));
+    place-items: center;
+    justify-content: space-evenly;
+    place-content: center;
+
+    @include mobile{
+      .text{
+        display:grid;
+        place-items: center;
+
+        .name{
+          display:grid;
+          place-items: center;
+        }
+      }
+    }
+    p{
+      font-size: 2.5rem;
+      font-weight: 900;
+      
+      span{
+        font-family: 'eina01-bold';
+        color: $secPurple;
+      }
+
+    }
+    img{
+      width: 100%
+    }
+  }
+  .skills{
+    padding: 3rem;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    header{
+      font-family: 'eina01-bold';
+      justify-self: center;
+      font-size: 2rem;
+      span{
+        color:$secPurple;
+      }
+    }
+    .items{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      justify-content: space-evenly;
+      place-items: center;
+
+      @include mobile{
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .skill{
+        display: grid;
+        place-items: center;
+      }
+    }
+  }
+  .projects{
+    display: grid;
+    grid-template-rows: auto 1fr;
+    justify-items: center;
+    padding: 3rem;
+    gap:1rem;
+
+    @include mobile{
+      padding: 0.8rem;
+    }
+    header{
+      font-size: 2rem;
+      font-family: 'eina01-bold';
+      span{
+        color: $secPurple;
+      }
+    }
+    .items{
+      display: grid;
+      gap:1rem;
+
+      .project_card{
+        background-color: #cd5ff81c;
+        border-radius: 20px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        place-items: center;
+        
+        @include mobile{
+          grid-template-columns: 1fr;
+          grid-template-rows: auto 1fr;
+        }
+        &>*{
+          padding:2rem;
+
+          @include mobile{
+            padding: 1rem;
+          }
+        }
+        .details{
+          display:flex;
+          flex-direction: column;
+          gap: 1rem;
+
+          .tech_stack{
+
+            span{
+              color: $secPurple ;
+            }
+          }
+          .options{
+            display: flex;
+            gap: 1rem;
+
+            a{
+              text-decoration: none;
+              button{
+                background-color:#00000000;
+                border-radius: 20px;
+                padding:0.3rem 1.1rem;
+                font-size: 1.1rem;
+                display: flex;
+                place-items: center;
+                gap:1ch;
+                cursor: pointer;
+                
+                &.live{
+                  display: flex;
+                  color:$secPurple;
+                  border: 2px solid $secPurple;
+
+                  &:hover{
+                    background-color: $secPurple;
+                    color: white;
+                    img{
+                      filter: invert(0) brightness(100);
+                    }
+                  }
+                  img{
+                    height: 1.1rem;
+                    width: 1.1rem;
+                  }
+                }
+                &.source{
+                  color: white;
+                  border: 2px solid white;
+
+                  &:hover{
+                    background-color: white;
+                    color: #000000;
+                  }
+                }
+              }
+            }
+
+          }
+        }
+        .image{
+          img{
+            border-radius: 20px;
+            width: 45vw;
+            object-fit: contain;
+            border: 2px solid white;
+
+            @include mobile{
+              width: 100%;
+              border-radius: 5px;
+              border: 1px solid white;
+            }
+          }
+
+          @include mobile{
+            grid-row-start: 1;
+          }
+        }
+      }
+    }
+  }
+}
